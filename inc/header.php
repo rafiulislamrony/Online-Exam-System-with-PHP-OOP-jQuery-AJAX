@@ -8,7 +8,7 @@ header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
 <!doctype html>
 <html>
 <head>
-	<title>Online Exam System</title>
+	<title>Online Exam System with PHP OOP jQuery AJAX </title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta http-equiv="Pragma" content="no-cache">
 	<meta http-equiv="no-cache">

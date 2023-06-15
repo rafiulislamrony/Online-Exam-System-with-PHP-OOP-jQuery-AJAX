@@ -24,9 +24,6 @@
        </table>
 	   </form>
 	   <p>New User ? <a href="register.php">Signup</a> Free</p>
-	</div>
-
-
-	
+	</div>  
 </div>
 <?php include 'inc/footer.php'; ?>
