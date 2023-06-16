@@ -4,8 +4,7 @@ Session::checkAdminSession();
 include_once("../lib/Database.php");
 include_once("../helpers/Format.php");
 $db = new Database();
-$fm = new Format();
-
+$fm = new Format(); 
 ?>
 <?php
 header("Cache-Control: no-store, no-cache, must-revalidate");
