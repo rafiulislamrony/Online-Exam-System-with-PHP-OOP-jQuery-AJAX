@@ -46,22 +46,7 @@ class Admin
                 $message = "<span class='error'>Username or password not match.</span>";
                 return $message;
             }
-        }
-
-
-    }
-
-
-
+        }  
+    } 
 }
-
-
-
-
-
-
-
-
-
-
 ?>

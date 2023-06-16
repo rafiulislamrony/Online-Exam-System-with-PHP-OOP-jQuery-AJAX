@@ -16,36 +16,29 @@ class Exam{
         $this->db = new Database();
         $this->fm = new Format();
     }
- 
-    public function getAdminData($data)
-    {
-        $adminname = $this->fm->validation($data['adminUser']);
-        $adminpassword = $this->fm->validation($data['adminPass']);
+  
+    public function addQuestion($data){
+        $questionNo = $this->fm->validation($data['questionNo']);
+        $question = $this->fm->validation($data['question']);
+        $ans1 = $this->fm->validation($data['ans1']);
+        $ans2 = $this->fm->validation($data['ans2']);
+        $ans3 = $this->fm->validation($data['ans3']);
+        $ans4 = $this->fm->validation($data['ans4']);
+        $rightAnswer = $this->fm->validation($data['rightAnswer']);
 
-        $adminname = mysqli_real_escape_string($this->db->link, $adminname);
-        $adminpassword = mysqli_real_escape_string($this->db->link, md5($adminpassword));
+        $ans = array(); 
+        $ans[1]= $ans1;
+        $ans[2]= $ans2;
+        $ans[3]= $ans3;
+        $ans[4]= $ans4;
 
-        // if (empty($adminname) || empty($adminpassword)) {
-        //     $message = "<span class='error'>Field Must not be Empty!</span>";
-        //     return $message;
-        // } else {
-        //     $query = "SELECT * FROM tbl_admin WHERE adminUser='$adminname' AND adminPass='$adminpassword' ";
-        //     $result = $this->db->select($query);
+        $questionNo = mysqli_real_escape_string($this->db->link, $questionNo); 
+        $question = mysqli_real_escape_string($this->db->link, $question); 
+        $rightAnswer = mysqli_real_escape_string($this->db->link, $rightAnswer); 
 
-        //     if ($result != false) {
-        //         $value = $result->fetch_assoc();
-        //         Session::init();
-        //         Session::set("adminLogin", true);
-        //         Session::set("adminUser", $value['adminUser']);
-        //         Session::set("adminId", $value['adminId']);
-        //         header("Location:Index.php");
-        //     } else {
-        //         $message = "<span class='error'>Username or password not match.</span>";
-        //         return $message;
-        //     }
-        // }
-    }  
 
+
+    }
     public function getQueByOrder(){
         $query = "SELECT * FROM tbl_question ORDER BY questionNo ASC"; 
         $result = $this->db->select($query);
@@ -65,8 +58,12 @@ class Exam{
             return $message;
         }
     }
-
-
-
+    public function getTotalRows(){ 
+            $query = "SELECT * FROM tbl_question";
+            $result = $this->db->delete($query); 
+            $total = $result->num_rows;
+            return $total; 
+    }
+ 
 } 
 ?>

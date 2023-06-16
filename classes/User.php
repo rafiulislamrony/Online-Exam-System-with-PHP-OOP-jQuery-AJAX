@@ -17,7 +17,7 @@ class User{
         $this->fm = new Format();
     }
  
-    public function getAdminData($data)
+    public function dumyforuse($data)
     {
         $adminname = $this->fm->validation($data['adminUser']);
         $adminpassword = $this->fm->validation($data['adminPass']);
