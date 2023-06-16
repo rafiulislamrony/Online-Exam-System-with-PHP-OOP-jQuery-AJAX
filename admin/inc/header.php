@@ -1,12 +1,11 @@
- 
-<?php   
+<?php
 include_once("../lib/Session.php");
 Session::checkAdminSession();
-include_once("../lib/Database.php"); 
-include_once("../helpers/Format.php"); 
+include_once("../lib/Database.php");
+include_once("../helpers/Format.php");
 $db = new Database();
 $fm = new Format();
- 
+
 ?>
 <?php
 header("Cache-Control: no-store, no-cache, must-revalidate");
@@ -30,6 +29,13 @@ header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
 
 <body>
 	<div class="phpcoding">
+		<?php
+		if (isset($_GET['action']) && $_GET['action'] == 'logout') {
+			Session::destroy();
+			header("Location:login.php");
+			exit();
+		}
+		?>
 		<section class="headeroption"></section>
 		<section class="maincontent">
 			<div class="menu">
