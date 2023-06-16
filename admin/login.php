@@ -1,8 +1,8 @@
 <?php
 $filepath = realpath(dirname(__FILE__));
 include_once($filepath . '/inc/loginheader.php');
-include_once($filepath . '../classes/Admin.php');
-$ad = new admin();
+include_once($filepath . '/../classes/Admin.php');
+$ad = new Admin();
 ?>
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -26,6 +26,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				<tr>
 					<td></td>
 					<td><input type="submit" name="login" value="Login" /></td>
+				</tr>
+				<tr> 
+					<td colspan="2"> 
+						<?php 
+						if(isset($adminData)){ 
+							echo $adminData;
+						}
+						?>
+					</td>
 				</tr>
 			</table>
 			</from>
