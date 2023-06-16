@@ -16,13 +16,13 @@ class User
         $this->fm = new Format();
     }
  
-    public function userResgistration($name,$username, $password, $email)
+    public function userResgistration($data)
     {
-        $name     = $this->fm->validation($name);
-        $username = $this->fm->validation($username);
-        $email    = $this->fm->validation($email); 
-        $password = $this->fm->validation($password); 
-
+        $name     = $this->fm->validation($data['name']);
+        $username = $this->fm->validation($data['username']);
+        $email    = $this->fm->validation($data['email']); 
+        $password = $this->fm->validation($data['password']);  
+ 
         $name     = mysqli_real_escape_string($this->db->link, $name);
         $username = mysqli_real_escape_string($this->db->link, $username);
         $email    = mysqli_real_escape_string($this->db->link, $email);
