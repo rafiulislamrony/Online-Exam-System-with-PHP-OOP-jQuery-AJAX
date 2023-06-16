@@ -41,7 +41,7 @@ header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
 			<div class="menu">
 				<ul>
 					<li><a href="index.php">Home</a></li>
-					<li><a href="users.php">Manage user</a></li>
+					<li><a href="users.php">Manage User</a></li>
 					<li><a href="quesadd.php">Add Ques</a></li>
 					<li><a href="queslist.php">Ques List</a></li>
 					<li><a href="?action=logout">Logout</a></li>
