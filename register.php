@@ -25,13 +25,14 @@
         </tr>  
         <tr>
           <td></td>
-          <td><input type="submit" name="submit" value="Signup">
+          <td><input type="submit" id="regsubmit" value="Signup"> 
           </td>
         </tr>
       </table>
     </form>
     <br> 
     <p>Already Registered ? <a href="index.php">Login</a> Here</p>
+    <span id="state"></span>
   </div>
 
 
