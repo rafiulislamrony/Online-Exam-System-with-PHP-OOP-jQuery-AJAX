@@ -118,3 +118,12 @@ input[type="submit"] {
   margin-bottom: 10px;
   padding-bottom: 10px;
 }
+.success{
+  color:green;
+  display: block;
+  padding-bottom: 5px;}
+.error {
+  color: red;
+  display: block;
+  padding-bottom: 5px;
+}

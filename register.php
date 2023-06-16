@@ -5,7 +5,7 @@
     <img src="img/regi.png" />
   </div>
   <div class="segment">
-    <form action="" method="post">
+    <form action="" method="POST">
       <table>
         <tr>
           <td>Name</td>
@@ -17,25 +17,23 @@
         </tr>
         <tr>
           <td>E-mail</td>
-          <td><input name="email" type="email" id="email" placeholder="Enter Your Email" ></td>
+          <td><input name="email" type="email" id="email" placeholder="Enter Your Email"></td>
         </tr>
         <tr>
           <td>Password</td>
-          <td><input type="password" name="password" id="password" placeholder="Enter Your Password" ></td>
-        </tr>  
+          <td><input type="password" name="password" id="password" placeholder="Enter Your Password"></td>
+        </tr>
         <tr>
           <td></td>
-          <td><input type="submit" id="regsubmit" value="Signup"> 
+          <td><input type="submit" id="regsubmit" value="Signup">
           </td>
         </tr>
       </table>
     </form>
-    <br> 
+    <br>
     <p>Already Registered ? <a href="index.php">Login</a> Here</p>
     <span id="state"></span>
-  </div>
-
-
+  </div> 
 
 </div>
 <?php include 'inc/footer.php'; ?>

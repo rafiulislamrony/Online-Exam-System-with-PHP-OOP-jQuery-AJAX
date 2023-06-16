@@ -1,13 +1,12 @@
 <?php
 
 $filepath = realpath(dirname(__FILE__));
-include_once($filepath . '/../lib/Database.php'); 
+include_once($filepath . '/../lib/Database.php');
 include_once($filepath . '/../helpers/Format.php');
 
-
-//Admin Classs
-
-class User{ 
+//User Classes
+class User
+{
     private $db;
     private $fm;
 
@@ -17,81 +16,92 @@ class User{
         $this->fm = new Format();
     }
  
-    public function dumyforuse($data)
+    public function userResgistration($name,$username, $password, $email)
     {
-        $adminname = $this->fm->validation($data['adminUser']);
-        $adminpassword = $this->fm->validation($data['adminPass']);
+        $name     = $this->fm->validation($name);
+        $username = $this->fm->validation($username);
+        $email    = $this->fm->validation($email); 
+        $password = $this->fm->validation($password); 
 
-        $adminname = mysqli_real_escape_string($this->db->link, $adminname);
-        $adminpassword = mysqli_real_escape_string($this->db->link, md5($adminpassword));
+        $name     = mysqli_real_escape_string($this->db->link, $name);
+        $username = mysqli_real_escape_string($this->db->link, $username);
+        $email    = mysqli_real_escape_string($this->db->link, $email);
+        $password = mysqli_real_escape_string($this->db->link, md5($password));
 
-        // if (empty($adminname) || empty($adminpassword)) {
-        //     $message = "<span class='error'>Field Must not be Empty!</span>";
-        //     return $message;
-        // } else {
-        //     $query = "SELECT * FROM tbl_admin WHERE adminUser='$adminname' AND adminPass='$adminpassword' ";
-        //     $result = $this->db->select($query);
+        if (empty($name) || empty($username) || empty($email) || empty($password)) {
+            echo "<span class='error'>Field Must not be Empty!</span>";
+            exit();
+        } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            echo "<span class='error'>Invalid Email Address.</span>";
+            exit();
+        } else {
+            $checkquery = "SELECT * FROM tbl_user WHERE email='$email'";
+            $chkresult = $this->db->select($checkquery);
+            if ($chkresult != false) {
+                echo "<span class='error'>Email Address Already Exist!</span>";
+                exit();
+            } else {
+                $query = "INSERT INTO tbl_user(name, username, password, email) values('$name', '$username', '$password','$email')";
+                $insert_row = $this->db->insert($query);
+                if ($insert_row) {
+                    echo "<span class='success'>Registration Successfull.</span>";
+                    exit();
+                } else {
+                    echo "<span class='success'>Something Error.</span>";
+                    exit();
+                }
 
-        //     if ($result != false) {
-        //         $value = $result->fetch_assoc();
-        //         Session::init();
-        //         Session::set("adminLogin", true);
-        //         Session::set("adminUser", $value['adminUser']);
-        //         Session::set("adminId", $value['adminId']);
-        //         header("Location:Index.php");
-        //     } else {
-        //         $message = "<span class='error'>Username or password not match.</span>";
-        //         return $message;
-        //     }
-        // }
-    }  
+            }
+        }
+    }
 
-    public function getUserData(){
+    public function getUserData()
+    {
         $query = "SELECT * FROM tbl_user ORDER BY userid DESC";
         $result = $this->db->select($query);
         return $result;
     }
-    public function disableUser($userid){
+    public function disableUser($userid)
+    {
         $query = "UPDATE tbl_user 
         SET
         status = '1'
         WHERE userid ='$userid'";
         $result = $this->db->update($query);
-        if($result){
-            $message = "<span class='success'>User Disable.</span>"; 
-            return $message ; 
-        } else{
+        if ($result) {
+            $message = "<span class='success'>User Disable.</span>";
+            return $message;
+        } else {
             $message = "<span class='success'>User not Disable.</span>";
             return $message;
         }
     }
-    public function enableUser($userid){
+    public function enableUser($userid)
+    {
         $query = "UPDATE tbl_user 
         SET
         status = '0'
         WHERE userid ='$userid'";
         $result = $this->db->update($query);
-        if($result){
-            $message = "<span class='success'>User Enable.</span>"; 
-            return $message ; 
-        } else{
+        if ($result) {
+            $message = "<span class='success'>User Enable.</span>";
+            return $message;
+        } else {
             $message = "<span class='success'>User not Enable.</span>";
             return $message;
         }
     }
-    public function deleteUser($userid){
+    public function deleteUser($userid)
+    {
         $query = "DELETE FROM tbl_user WHERE userid ='$userid'";
         $result = $this->db->delete($query);
-        if($result){
-            $message = "<span class='success'>User Deleted Successfully.</span>"; 
-            return $message ; 
-        } else{
-            $message = "<span class='success'>User not Deleted.</span>"; 
+        if ($result) {
+            $message = "<span class='success'>User Deleted Successfully.</span>";
+            return $message;
+        } else {
+            $message = "<span class='success'>User not Deleted.</span>";
             return $message;
         }
     }
-
-
-
-} 
+}
 ?>
