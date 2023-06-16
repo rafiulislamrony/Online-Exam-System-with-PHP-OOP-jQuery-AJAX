@@ -16,7 +16,7 @@ class User{
         $this->db = new Database();
         $this->fm = new Format();
     }
-
+ 
     public function getAdminData($data)
     {
         $adminname = $this->fm->validation($data['adminUser']);
@@ -45,6 +45,12 @@ class User{
         //     }
         // }
     }  
+
+    public function getUserData(){
+        $query = "SELECT * FROM tbl_user ORDER BY userid DESC";
+        $result = $this->db->select($query);
+        return $result;
+    }
 
 
 
