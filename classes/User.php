@@ -65,6 +65,31 @@ class User{
             return $message;
         }
     }
+    public function enableUser($userid){
+        $query = "UPDATE tbl_user 
+        SET
+        status = '0'
+        WHERE userid ='$userid'";
+        $result = $this->db->update($query);
+        if($result){
+            $message = "<span class='success'>User Enable.</span>"; 
+            return $message ; 
+        } else{
+            $message = "<span class='success'>User not Enable.</span>";
+            return $message;
+        }
+    }
+    public function deleteUser($userid){
+        $query = "DELETE FROM tbl_user WHERE userid ='$userid'";
+        $result = $this->db->delete($query);
+        if($result){
+            $message = "<span class='success'>User Deleted Successfully.</span>"; 
+            return $message ; 
+        } else{
+            $message = "<span class='success'>User not Deleted.</span>"; 
+            return $message;
+        }
+    }
 
 
 

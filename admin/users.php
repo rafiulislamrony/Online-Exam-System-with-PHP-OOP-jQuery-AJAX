@@ -11,6 +11,18 @@ if (isset($_GET['dis'])) {
     $disableId = mysqli_real_escape_string($db->link, $disableId); 
     $disUser = $usr->disableUser($disableId); 
 } 
+if (isset($_GET['ena'])) {
+    $enableId = (int)$_GET['ena'];
+    $enableId = $fm->validation($enableId);
+    $enableId = mysqli_real_escape_string($db->link, $enableId); 
+    $enaUser = $usr->enableUser($enableId); 
+} 
+if (isset($_GET['del'])) {
+    $delId = (int)$_GET['del'];
+    $delId = $fm->validation($delId);
+    $delId = mysqli_real_escape_string($db->link, $delId); 
+    $deleteUser = $usr->deleteUser($delId); 
+} 
 ?>
 
  
@@ -19,6 +31,12 @@ if (isset($_GET['dis'])) {
     <?php  
     if(isset($disUser)){
         echo $disUser;
+    }
+    if(isset($enaUser)){
+        echo $enaUser;
+    }
+    if(isset($deleteUser)){
+        echo $deleteUser;
     }
     ?>
 
