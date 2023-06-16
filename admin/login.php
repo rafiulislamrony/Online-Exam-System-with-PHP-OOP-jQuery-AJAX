@@ -1,27 +1,34 @@
-<?php 
-    $filepath = realpath(dirname(__FILE__));
-	include_once ($filepath.'/inc/loginheader.php');
+<?php
+$filepath = realpath(dirname(__FILE__));
+include_once($filepath . '/inc/loginheader.php');
+include_once($filepath . '../classes/Admin.php');
+$ad = new admin();
+?>
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+	$adminData = $ad->getAdminData($_POST);
+}
 ?>
 
 <div class="main">
-<h1>Admin Login</h1>
-<div class="adminlogin">
-	<form action="" method="post">
-		<table>
-			<tr>
-				<td>Username</td>
-				<td><input type="text" name="username"/></td>
-			</tr>
-			<tr>
-				<td>Password</td>
-				<td><input type="password" name="password"/></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><input type="submit" name="login" value="Login"/></td>
-			</tr>
-		</table>
-	</from>
-</div>
+	<h1>Admin Login</h1>
+	<div class="adminlogin"> 
+		<form action="" method="POST">
+			<table>
+				<tr>
+					<td>Username</td>
+					<td><input type="text" placeholder="Enter Admin Name" name="adminUser" /></td>
+				</tr>
+				<tr>
+					<td>Password</td>
+					<td><input type="password" placeholder="Enter Admin password" name="adminPass" /></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="submit" name="login" value="Login" /></td>
+				</tr>
+			</table>
+			</from>
+	</div>
 </div>
 <?php include 'inc/footer.php'; ?>

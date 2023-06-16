@@ -1,12 +1,3 @@
-<?php 
-    include_once ("../lib/Session.php");
-    include_once ("../lib/Database.php");
-    include_once ("../helpers/Format.php");
-	Session::init();
-
-	$db  = new Database();
-	$fm  = new Format();
-?>
 <?php
 header("Cache-Control: no-store, no-cache, must-revalidate"); 
 header("Cache-Control: pre-check=0, post-check=0, max-age=0"); 
