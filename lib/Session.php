@@ -15,6 +15,13 @@ class Session{
 	 		return false;
 	 	}
 	 }
+	 public static function checkAdminSession(){
+		self::init();
+		if (self::get("adminLogin") == false) {
+			self::destroy();
+			header("Location:login.php");
+		}
+	}
 
 	 public static function checkSession(){
 	 	self::init();
@@ -23,6 +30,13 @@ class Session{
 	 		header("Location:login.php");
 	 	}
 	 }
+
+	 public static function checkAdminLogin(){
+		self::init();
+		if (self::get("adminLogin") == true) {
+			header("Location:index.php");
+		}
+	}
 
 	 public static function checkLogin(){
 	 	self::init();
