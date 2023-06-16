@@ -25,6 +25,11 @@ $next = $total +1;
 
 <div class="main">
     <h1>Add Question</h1>
+    <?php 
+    if(isset($addQue)){
+        echo $addQue;
+    }
+    ?>
     <div class="adminpanel">
         <form action="" method="POST">
             <table class="tbleone">
