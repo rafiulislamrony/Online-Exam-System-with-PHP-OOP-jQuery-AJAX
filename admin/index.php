@@ -2,8 +2,7 @@
 $filepath = realpath(dirname(__FILE__));
 include_once($filepath . '/inc/header.php');
 ?>
-
-
+ 
 <style>
   .adminpanel{
     color: #999;
