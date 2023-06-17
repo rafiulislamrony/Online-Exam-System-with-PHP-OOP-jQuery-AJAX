@@ -27,7 +27,7 @@ class User
         $name = mysqli_real_escape_string($this->db->link, $name);
         $username = mysqli_real_escape_string($this->db->link, $username);
         $email = mysqli_real_escape_string($this->db->link, $email);
-        $password = mysqli_real_escape_string($this->db->link, md5($password));
+     
 
         if (empty($name) || empty($username) || empty($email) || empty($password)) {
             echo "<span class='error'>Field Must not be Empty!</span>";
@@ -36,12 +36,14 @@ class User
             echo "<span class='error'>Invalid Email Address.</span>";
             exit();
         } else {
+
             $checkquery = "SELECT * FROM tbl_user WHERE email='$email'";
             $chkresult = $this->db->select($checkquery);
             if ($chkresult != false) {
                 echo "<span class='error'>Email Address Already Exist!</span>";
                 exit();
             } else {
+                $password = mysqli_real_escape_string($this->db->link, md5($password));
                 $query = "INSERT INTO tbl_user(name, username, password, email) values('$name', '$username', '$password','$email')";
                 $insert_row = $this->db->insert($query);
                 if ($insert_row) {
@@ -60,12 +62,13 @@ class User
         $email = $this->fm->validation($data['email']);
         $password = $this->fm->validation($data['password']);
         $email = mysqli_real_escape_string($this->db->link, $email);
-        $password = mysqli_real_escape_string($this->db->link, md5($password));
+       
 
         if (empty($email) || empty($password)) {
             echo "empty";
             exit();
         } else {
+            $password = mysqli_real_escape_string($this->db->link, md5($password)); 
             $query = "SELECT * FROM tbl_user WHERE email='$email' AND password='$password'";
             $result = $this->db->select($query);
 

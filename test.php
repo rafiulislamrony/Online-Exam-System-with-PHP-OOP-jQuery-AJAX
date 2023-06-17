@@ -11,8 +11,8 @@ $total = $exm->getTotalRows();
 $question = $exm->getQuestionByNumber($number);
 ?>
 
-<?php 
-if($_SERVER['REQUEST_METHOD']=='POST'){
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$process = $pro->processData($_POST);
 }
 ?>
@@ -23,7 +23,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 		<?php echo $total; ?>
 	</h1>
 	<div class="test">
-		<form method="post" action=""> 
+		<form method="post" action="">
 			<table>
 				<tr>
 					<td colspan="2">
@@ -55,6 +55,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 				</tr>
 
 			</table>
+		</form>
 	</div>
 </div>
 <?php include 'inc/footer.php'; ?>
