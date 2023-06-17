@@ -24,7 +24,10 @@
        </table>
 	   </form>
 	   <p>New User ? <a href="register.php">Signup</a> Free</p>
-	   
+
+	   <span class="empty"> Field Must Not be Empty. </span>
+	   <span class="error">Email or Password not match. </span>
+	   <span class="disable">Your Account is Disable. </span>
 
 	</div>  
 </div>

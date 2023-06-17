@@ -1,6 +1,7 @@
 <?php
 
 $filepath = realpath(dirname(__FILE__));
+include_once($filepath . '/../lib/Session.php');
 include_once($filepath . '/../lib/Database.php');
 include_once($filepath . '/../helpers/Format.php');
 
@@ -62,31 +63,32 @@ class User
         $password = mysqli_real_escape_string($this->db->link, md5($password));
 
         if (empty($email) || empty($password)) {
-            echo "<span class='error'>Field Must not be Empty!</span>";
+            echo "empty";
             exit();
-        } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            echo "<span class='error'>Invalid Email Address.</span>";
-            exit();
-        } else {
-            $checkquery = "SELECT * FROM tbl_user WHERE email='$email'";
-            $chkresult = $this->db->select($checkquery);
-            if ($chkresult != false) {
-                echo "<span class='error'>Email Address Already Exist!</span>";
-                exit();
-            } else {
-                $query = "INSERT INTO tbl_user(name, username, password, email) values('$name', '$username', '$password','$email')";
-                $insert_row = $this->db->insert($query);
-                if ($insert_row) {
-                    echo "<span class='success'>Registration Successfull.</span>";
-                    exit();
-                } else {
-                    echo "<span class='success'>Something Error.</span>";
-                    exit();
-                }
+        }else {
+            $query = "SELECT * FROM tbl_user WHERE email='$email' AND password='$password'";  
+            $result = $this->db->select($query);
 
+            if ($result != false) {
+                $value = $result->fetch_assoc();
+                if($value['status'] == '1'){
+                    echo "disable";
+                    exit();
+                }else{
+                    Session::init();
+                    Session::set("login", true);
+                    Session::set("userid", $value['userid']);
+                    Session::set("username", $value['username']);
+                    Session::set("name", $value['name']); 
+                } 
+            }else{
+                echo "error";
+                exit();
             }
         }
     }
+
+
 
     public function getUserData()
     {

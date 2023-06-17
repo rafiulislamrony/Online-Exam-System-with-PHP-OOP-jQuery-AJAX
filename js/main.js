@@ -34,7 +34,16 @@ $(function(){
             url:'getlogin.php',
             data:dataString,
             success:function(data){
-                $("#state").html(data);
+                if($.trim(data)== 'empty'){
+
+                }elseif($.trim(data)== 'disable'){
+                    
+                }
+                }elseif($.trim(data)== 'error'){
+
+                }else{
+                    window.location = "exam.php";
+                }
             }
         });
         return false; 
