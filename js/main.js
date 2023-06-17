@@ -50,7 +50,6 @@ $(function () {
                     window.location = "exam.php";
                 } 
             }
-
         });
         return false;
     });

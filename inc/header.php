@@ -1,22 +1,22 @@
 <?php
 
 $filepath = realpath(dirname(__FILE__));
-include_once($filepath . "/../lib/Session.php"); 
+include_once($filepath . "/../lib/Session.php");
 Session::init();
 
-include_once($filepath . '/../lib/Database.php'); 
+include_once($filepath . '/../lib/Database.php');
 include_once($filepath . '/../helpers/Format.php');
 
- 
-spl_autoload_register(function($class){
-	include_once "classes/" .$class.".php";
+
+spl_autoload_register(function ($class) {
+	include_once "classes/" . $class . ".php";
 });
 
 $db = new Database();
-$fm = new Format(); 
-$usr = new User(); 
-$exm = new Exam(); 
-$pro = new Process(); 
+$fm = new Format();
+$usr = new User();
+$exm = new Exam();
+$pro = new Process();
 
 ?>
 
@@ -44,16 +44,37 @@ header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
 </head>
 
 <body>
+	<?php
+	if (isset($_GET['action']) && $_GET['action'] == 'logout') {
+		Session::destroy();
+		header("Location:index.php");
+		exit();
+	}
+	?>
 
 	<div class="phpcoding">
 		<section class="headeroption"></section>
 		<section class="maincontent">
 			<div class="menu">
 				<ul>
-					<li><a href="index.php">Login</a></li>
-					<li><a href="profile.php">Profile</a></li>
-					<li><a href="exam.php">Exam</a></li>
-					<li><a href="register.php">Register</a></li>
-					<li><a href="logout.php">Logout</a></li>
+					<?php
+					$login = Session::get("login");
+					if ($login == true) { ?>
+						<li><a href="profile.php">Profile</a></li>
+						<li><a href="exam.php">Exam</a></li>
+						<li><a href="?action=logout">Logout</a></li>
+					<?php } else { ?>
+						<li><a href="index.php">Login</a></li>
+						<li><a href="register.php">Register</a></li>
+					<?php } ?>
 				</ul>
+				<?php
+				$login = Session::get("login");
+				if ($login == true) { ?>
+					<span style="float: right; color:#000;">
+						Welcome <strong>
+							<?php echo Session::get("username"); ?>
+						</strong>
+					</span>
+				<?php } ?>
 			</div>
