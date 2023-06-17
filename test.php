@@ -11,13 +11,19 @@ $total = $exm->getTotalRows();
 $question = $exm->getQuestionByNumber($number);
 ?>
 
+<?php 
+if($_SERVER['REQUEST_METHOD']=='POST'){
+	$process = $pro->processData($_POST);
+}
+?>
+
 <div class="main">
 	<h1>Question
 		<?php echo $question['questionNo']; ?> of
 		<?php echo $total; ?>
 	</h1>
 	<div class="test">
-		<form method="post" action="">
+		<form method="post" action=""> 
 			<table>
 				<tr>
 					<td colspan="2">
