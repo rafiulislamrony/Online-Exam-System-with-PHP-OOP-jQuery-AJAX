@@ -86,10 +86,14 @@ class User
                 exit();
             }
         }
+    } 
+
+    public function getUserDataById($userid)
+    {
+        $query = "SELECT * FROM tbl_user WHERE userid='$userid'";
+        $result = $this->db->select($query);
+        return $result;
     }
-
-
-
     public function getUserData()
     {
         $query = "SELECT * FROM tbl_user ORDER BY userid DESC";
