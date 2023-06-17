@@ -2,6 +2,8 @@
 
 <?php
 Session::checkSession();
+$question = $exm->getQuestion(); 
+$total =  $exm->getTotalRows(); 
 ?>
 
 <div class="main">
@@ -12,14 +14,12 @@ Session::checkSession();
         </h2>
         <p>
             This is multiple choice quiz to test your knowladge.
-        </p>
-
+        </p> 
         <ul>
-            <li> <strong>Number of question:</strong> </li>
+            <li> <strong>Number of question:</strong><?php echo $total; ?> </li> 
             <li> <strong>Question type:</strong>Multiple Choice </li>
-        </ul>
-
-        <a href="test.php">Start Test</a>
+        </ul> 
+        <a href="test.php?q=<?php echo $question['questionNo']; ?>">Start Test</a>
     </div> 
 </div>
 <?php include 'inc/footer.php'; ?>

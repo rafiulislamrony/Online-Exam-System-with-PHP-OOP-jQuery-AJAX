@@ -66,7 +66,6 @@ class Exam
          } 
     }
 
-
     public function getQueByOrder()
     {
         $query = "SELECT * FROM tbl_question ORDER BY questionNo ASC";
@@ -95,6 +94,28 @@ class Exam
         $total = $result->num_rows;
         return $total;
     }
+
+    public function getQuestion()
+    {
+        $query = "SELECT * FROM tbl_question";
+        $getdata = $this->db->select($query);
+        $result = $getdata->fetch_assoc();
+        return $result;
+    }
+    public function getQuestionByNumber($number)
+    {
+        $query = "SELECT * FROM tbl_question WHERE questionNo='$number' ";
+        $getdata = $this->db->select($query);
+        $result = $getdata->fetch_assoc();
+        return $result;
+    }
+    public function getAnswer($number)
+    {
+        $query = "SELECT * FROM tbl_answer WHERE questionNo='$number' ";
+        $result = $this->db->select($query); 
+        return $result;
+    }
+
 
 }
 ?>
