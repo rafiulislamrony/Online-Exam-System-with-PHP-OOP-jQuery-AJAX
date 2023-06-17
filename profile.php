@@ -15,9 +15,21 @@ Session::checkSession();
 $userid = Session::get("userid");
 ?>
 
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+	$updateprofile = $usr->updateProfile($userid, $_POST);
+}
+?>
+
 <div class="main">
     <h1>Your Profile</h1>
+
     <div class="profile">
+        <?php 
+        if(isset($updateprofile)){
+            echo $updateprofile; 
+        }
+        ?>
         <form action="" method="post">
             <?php
             $getData = $usr->getUserDataById($userid);
