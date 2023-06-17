@@ -23,7 +23,7 @@ $total =  $exm->getTotalRows();
     </div> 
 </div>
 <?php include 'inc/footer.php'; ?>
-<style>
+ <style>
     .starttest{
        border: 1px solid #f4f4f4;
        margin: 0 auto;
